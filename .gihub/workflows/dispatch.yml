@@ -1,0 +1,29 @@
+name: Akamai certificate delete
+on:
+
+  repository_dispatch:
+    types: [certificate-removal]
+
+env:
+  AKAMAI_CLI_VERSION: "v1.5.4"
+  EDGERC_FILE: "/home/runner/.edgerc"
+
+
+jobs:
+  certificate-delete:
+    name: akamai certificate delete
+    runs-on: ubuntu-latest
+    steps:
+
+      # Install akamai cli and subcommands
+      - name: Install Akamai cli
+        shell: bash
+        run: |
+          set -x
+          # Download Akamai CLI and copy to /usr/local/bin
+          wget https://github.com/akamai/cli/releases/download/"${AKAMAI_CLI_VERSION}"/akamai-"${AKAMAI_CLI_VERSION}"-linuxamd64
+          chmod +x akamai-"${AKAMAI_CLI_VERSION}"-linuxamd64
+          mv akamai-"${AKAMAI_CLI_VERSION}"-linuxamd64 /usr/local/bin/akamai
+          
+          # echo out the version to show successful installation
+          akamai --version
