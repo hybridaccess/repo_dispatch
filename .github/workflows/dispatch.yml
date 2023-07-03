@@ -2,9 +2,21 @@ name: Dispatch
 on:
 
   workflow_dispatch:
+    inputs:
+      CONCURRENCY_KEY:
+        description: 'concurrency key to use in this workflow'
+        type: string
+        required: false
+        default: 'demo'  
 
   repository_dispatch:
     types: [certificate-removal]
+    
+  push:
+    branches:
+     - master  
+
+concurrency: ${{ github.event.inputs.CONCURRENCY_KEY }}
 
 env:
   AKAMAI_CLI_VERSION: "v1.5.4"
