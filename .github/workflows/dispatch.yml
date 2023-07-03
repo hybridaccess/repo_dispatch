@@ -16,7 +16,7 @@ on:
     branches:
      - master  
 
-concurrency: ${{ github.event.inputs.CONCURRENCY_KEY || github.ref_name }}
+concurrency: ${{ github.event.inputs.CONCURRENCY_KEY || github.sha }}
 
 env:
   AKAMAI_CLI_VERSION: "v1.5.4"
@@ -25,7 +25,7 @@ env:
 
 jobs:
   dispatch-test:
-    name: repository dispatch test - ${{ github.event.inputs.CONCURRENCY_KEY || github.ref_name }}
+    name: repository dispatch test - ${{ github.event.inputs.CONCURRENCY_KEY || github.sha }}
     runs-on: ubuntu-latest
     steps:
 
