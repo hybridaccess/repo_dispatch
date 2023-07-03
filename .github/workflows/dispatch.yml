@@ -42,5 +42,7 @@ jobs:
           # echo out the version to show successful installation
           akamai --version
           
+          sleep 60
+          
           # debug
           echo "enrollment_id: ${{ github.event.client_payload.enrollment_id }}"
