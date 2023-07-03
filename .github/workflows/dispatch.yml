@@ -16,7 +16,7 @@ on:
     branches:
      - master  
 
-concurrency: ${{ github.event.inputs.CONCURRENCY_KEY }}
+concurrency: ${{ inputs.CONCURRENCY_KEY }}
 
 env:
   AKAMAI_CLI_VERSION: "v1.5.4"
