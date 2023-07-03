@@ -16,7 +16,7 @@ on:
     branches:
      - master  
 
-concurrency: ${{ inputs.CONCURRENCY_KEY }}
+concurrency: ${{ inputs.CONCURRENCY_KEY || "dummy" }}
 
 env:
   AKAMAI_CLI_VERSION: "v1.5.4"
