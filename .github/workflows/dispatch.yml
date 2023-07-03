@@ -11,7 +11,9 @@ on:
 
   repository_dispatch:
     types: [certificate-removal]
-    
+  
+  pull_request:  
+  
   push:
     branches:
      - master  
@@ -25,7 +27,7 @@ env:
 
 jobs:
   dispatch-test:
-    if: ${{ github.event.inputs.CONCURRENCY_KEY != '' }}
+    if: ${{ github.event_name != 'push' || github.event.inputs.CONCURRENCY_KEY != '' }}
     name: repository dispatch test - ${{ github.event.inputs.CONCURRENCY_KEY || github.sha }}
     runs-on: ubuntu-latest
     steps:
