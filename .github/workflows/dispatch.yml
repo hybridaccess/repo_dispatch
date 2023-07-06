@@ -31,6 +31,12 @@ jobs:
     name: repository dispatch test - ${{ github.event.inputs.CONCURRENCY_KEY || github.sha }}
     runs-on: ubuntu-latest
     steps:
+    
+      - name: Debug
+        shell: bash
+        run: |
+          set -x
+          echo "${{ github.event.inputs.CONCURRENCY_KEY-cert || github.sha }}"
 
       # Install akamai cli and subcommands
       - name: Install cli
