@@ -18,7 +18,7 @@ on:
     branches:
      - master  
 
-concurrency: "${{ github.event.inputs.CONCURRENCY_KEY-cert || github.sha }}"
+concurrency: "${{ github.event.inputs.CONCURRENCY_KEY || github.sha }}"
 
 env:
   AKAMAI_CLI_VERSION: "v1.5.4"
@@ -36,7 +36,7 @@ jobs:
         shell: bash
         run: |
           set -x
-          echo "${{ github.event.inputs.CONCURRENCY_KEY-cert || github.sha }}"
+          echo "${{ github.event.inputs.CONCURRENCY_KEY || github.sha }}-cert"
 
       # Install akamai cli and subcommands
       - name: Install cli
